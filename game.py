@@ -27,22 +27,8 @@ def catch(rect_position, object_pos, score):
             score += 1
         else:
             lives - 1
-                # if lives == 0:
-                #     game_over = True
-                # return game_over
     return score 
-    
-    # return game_over
 
-    # if score <= 0 and catch_attempted:
-    #     game_over = True
-    # return score
-
-# def miss(rect_position, object_pos, score):
-#     if object_pos[0] < (rect_position[0]-30) and object_pos[0] > (rect_position[0]+30):
-#         if object_pos[1] < rect_position[1] and object_pos[1] > (rect_position[1] + 60):
-#             score - 1
-#     return score
     
 
 while not game_over:
@@ -74,19 +60,19 @@ while not game_over:
     player_score = "Score: " + str(score)
     show_score = score_font.render(player_score, 1, (155,100,50))
     screen.blit(show_score, (340, 10))
+    if lives == 0:
+        game_over = True
   
 
     pygame.draw.rect(screen, (0,0,255), (object_pos[0], object_pos[1], 50, 50))
     pygame.draw.rect(screen, (0,255,0), (rect_position[0], rect_position[1], 80, 60))
 
-    # green_apple = pygame.image.load("/Users/mohammadyasin/dev/Intensives/Intensive 1.3/green-apple.jpeg").convert()
-    red_apple = pygame.image.load("/Users/mohammadyasin/dev/Intensives/Intensive 1.3/red_apple.jpeg").convert()
-    
+    red_apple = pygame.image.load("red_apple.jpeg").convert()
     apples = pygame.Rect(object_pos[0], object_pos[1], 50, 50)
     apple = pygame.transform.scale(red_apple, (50, 50))
     screen.blit(apple, apples)
 
-    basket_img = pygame.image.load("/Users/mohammadyasin/dev/Intensives/Intensive 1.3/emp-basket1.jpeg").convert()
+    basket_img = pygame.image.load("emp-basket1.jpeg").convert()
     rect = pygame.Rect(rect_position[0], rect_position[1], 80, 60)
     basket = pygame.transform.scale(basket_img, (80, 60))
     screen.blit(basket, rect)
@@ -98,5 +84,3 @@ while not game_over:
     clock.tick(30)
     pygame.display.update()
 
-if lives == 0:
-    game_over
